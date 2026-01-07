@@ -8,7 +8,7 @@
         body {
             background-color: #1E4198;
             margin: 0;
-            padding: 20px;
+            padding: 10px; /* 缩小内边距 */
             font-family: Arial, sans-serif;
             position: relative;
             min-height: 100vh;
@@ -17,21 +17,22 @@
         /* 新增语言切换按钮样式 */
         .language-switcher {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 10px; /* 缩小顶部间距 */
+            right: 10px; /* 缩小右侧间距 */
             z-index: 100;
         }
         .lang-btn {
             background-color: #FFC100;
             color: #000;
             border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin-left: 5px;
+            padding: 6px 12px; /* 缩小按钮内边距 */
+            border-radius: 4px; /* 缩小圆角 */
+            margin-left: 4px; /* 缩小按钮间距 */
             cursor: pointer;
             font-weight: bold;
             transition: all 0.2s;
             font-family: Arial, "Times New Roman", serif;
+            font-size: 12px; /* 缩小字体 */
         }
         .lang-btn:hover {
             background-color: #FFD700;
@@ -43,38 +44,38 @@
         }
         .header {
             text-align: center;
-            margin-bottom: 20px;
-            padding-top: 40px; /* 避开顶部按钮 */
+            margin-bottom: 15px; /* 缩小底部间距 */
+            padding-top: 30px; /* 缩小顶部内边距 */
         }
         .title {
             background-color: #E62E2E;
             color: #FFD900;
-            font-size: 24px;
+            font-size: 20px; /* 缩小标题字体 */
             font-weight: bold;
-            padding: 10px 30px;
-            border-radius: 5px;
+            padding: 8px 20px; /* 缩小内边距 */
+            border-radius: 4px; /* 缩小圆角 */
             display: inline-block;
             margin: 0;
         }
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(3, 120px);
-            grid-template-rows: repeat(7, 70px);
-            gap: 10px;
+            grid-template-columns: repeat(3, 90px); /* 缩小格子宽度 */
+            grid-template-rows: repeat(7, 50px); /* 缩小格子高度 */
+            gap: 8px; /* 缩小格子间距 */
             justify-content: center;
         }
         .grid-item {
             background-color: #E62E2E;
             color: #FFD900;
-            font-size: 30px;
+            font-size: 22px; /* 缩小问号字体 */
             font-weight: bold;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border-radius: 5px;
+            border-radius: 4px; /* 缩小圆角 */
             position: relative;
-            padding: 5px 0;
+            padding: 3px 0; /* 缩小内边距 */
             cursor: default;
             transition: all 0.15s ease;
             box-sizing: border-box;
@@ -86,12 +87,12 @@
         .start-btn {
             background-color: #FFC100;
             color: #000;
-            font-size: 20px;
+            font-size: 18px; /* 缩小按钮字体 */
             font-weight: bold;
-            padding: 10px 90px;
+            padding: 8px 70px; /* 缩小按钮内边距 */
             border: none;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 4px; /* 缩小圆角 */
+            margin-top: 15px; /* 缩小顶部间距 */
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -109,36 +110,36 @@
             text-align: center;
         }
         .icon {
-            width: 20px;
-            height: 20px;
+            width: 15px; /* 缩小装饰图标 */
+            height: 15px; /* 缩小装饰图标 */
             background-color: #FFC100;
             border-radius: 50% 50% 50% 0;
             position: absolute;
         }
-        .icon-left { top: 150px; left: 20px; }
-        .icon-right { top: 250px; right: 20px; }
+        .icon-left { top: 120px; left: 10px; } /* 调整装饰图标位置 */
+        .icon-right { top: 200px; right: 10px; } /* 调整装饰图标位置 */
         .star {
             color: #fff;
             position: absolute;
-            font-size: 18px;
+            font-size: 14px; /* 缩小星星字体 */
         }
-        .star1 { top: 80px; left: 20px; }
-        .star2 { bottom: 50px; right: 20px; }
-        .star3 { bottom: 20px; left: 20px; }
-        .star4 { right: 20px; top: 400px; }
+        .star1 { top: 60px; left: 10px; } /* 调整星星位置 */
+        .star2 { bottom: 40px; right: 10px; } /* 调整星星位置 */
+        .star3 { bottom: 15px; left: 10px; } /* 调整星星位置 */
+        .star4 { right: 10px; top: 300px; } /* 调整星星位置 */
         /* 滚动高亮样式 */
         .grid-item.active {
             background-color: #FFD900;
             color: #E62E2E;
             transform: scale(1.05);
-            box-shadow: 0 0 15px #FFD900;
+            box-shadow: 0 0 12px #FFD900; /* 缩小阴影 */
             z-index: 10;
         }
         /* 中奖高亮+闪烁样式（滚动停止后） */
         .grid-item.win {
             background-color: #FF0000;
             color: #FFFFFF;
-            box-shadow: 0 0 20px #FF0000, 0 0 30px #FF0000;
+            box-shadow: 0 0 15px #FF0000, 0 0 25px #FF0000; /* 缩小阴影 */
             transform: scale(1.05);
             z-index: 20;
         }
@@ -146,7 +147,7 @@
         .grid-item.flipped {
             background-color: #FFFFFF !important;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 4px; /* 缩小圆角 */
             transform: scale(1);
             z-index: 25;
             animation: flipFlash 1.2s ease-in-out infinite alternate;
@@ -161,7 +162,7 @@
         .grid-item.shuffle-show {
             background-color: #FFFFFF;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 4px; /* 缩小圆角 */
             transform: scale(1);
             z-index: 25;
         }
@@ -172,23 +173,23 @@
         }
         /* 翻转后永久持续闪烁动画 */
         @keyframes flipFlash {
-            from { box-shadow: 0 0 10px #FFFFFF, 0 0 15px #E62E2E; opacity: 1; }
-            to { box-shadow: 0 0 25px #FFFFFF, 0 0 35px #E62E2E; opacity: 0.95; }
+            from { box-shadow: 0 0 8px #FFFFFF, 0 0 12px #E62E2E; /* 缩小阴影 */ opacity: 1; }
+            to { box-shadow: 0 0 20px #FFFFFF, 0 0 30px #E62E2E; /* 缩小阴影 */ opacity: 0.95; }
         }
         /* 中奖文字分行样式 */
         .prize-text {
-            font-size: 16px;
+            font-size: 13px; /* 缩小奖品文字 */
             line-height: 1.2;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2px;
+            gap: 1px; /* 缩小行间距 */
             width: 100%;
-            padding: 0 5px;
+            padding: 0 3px; /* 缩小内边距 */
         }
-        .prize-top { font-size: 15px; }
-        .prize-bottom { font-size: 17px; font-weight: bold; }
+        .prize-top { font-size: 12px; /* 缩小上半部分文字 */ }
+        .prize-bottom { font-size: 14px; /* 缩小下半部分文字 */ font-weight: bold; }
     </style>
 </head>
 <body>
