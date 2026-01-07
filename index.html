@@ -70,7 +70,6 @@
             font-size: 22px; /* 缩小问号字体 */
             font-weight: bold;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             border-radius: 4px; /* 缩小圆角 */
@@ -80,15 +79,6 @@
             transition: all 0.15s ease;
             box-sizing: border-box;
             text-align: center;
-        }
-        /* 新增序号样式 */
-        .grid-item .number {
-            position: absolute;
-            top: 2px;
-            left: 4px;
-            font-size: 10px;
-            color: rgba(255, 217, 0, 0.8);
-            font-weight: normal;
         }
         .empty {
             background-color: transparent;
@@ -197,8 +187,8 @@
         }
         /* 翻转后永久持续闪烁动画 */
         @keyframes flipFlash {
-            from { box-shadow: 0 0 8px #FFFFFF, 0 0 12px #E62E2E; /* 缩小阴影 */ opacity: 1; }
-            to { box-shadow: 0 0 20px #FFFFFF, 0 0 30px #E62E2E; /* 缩小阴影 */ opacity: 0.95; }
+            from { box-shadow: 0 0 8px #FFFFFF, 0 0 12px #E62E2E; opacity: 1; }
+            to { box-shadow: 0 0 20px #FFFFFF, 0 0 30px #E62E2E; opacity: 0.95; }
         }
         /* 中奖文字分行样式 */
         .prize-text {
@@ -236,62 +226,30 @@
     </div>
 
     <div class="grid-container">
-        <div class="grid-item" data-num="1">
-            <span class="number">1</span>？
-        </div>
-        <div class="grid-item" data-num="2">
-            <span class="number">2</span>？
-        </div>
-        <div class="grid-item" data-num="3">
-            <span class="number">3</span>？
-        </div>
-        <div class="grid-item" data-num="4">
-            <span class="number">4</span>？
-        </div>
+        <div class="grid-item" data-num="1">？</div>
+        <div class="grid-item" data-num="2">？</div>
+        <div class="grid-item" data-num="3">？</div>
+        <div class="grid-item" data-num="4">？</div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="5">
-            <span class="number">5</span>？
-        </div>
-        <div class="grid-item" data-num="6">
-            <span class="number">6</span>？
-        </div>
+        <div class="grid-item" data-num="5">？</div>
+        <div class="grid-item" data-num="6">？</div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="7">
-            <span class="number">7</span>？
-        </div>
-        <div class="grid-item" data-num="8">
-            <span class="number">8</span>？
-        </div>
+        <div class="grid-item" data-num="7">？</div>
+        <div class="grid-item" data-num="8">？</div>
         <!-- 插入图片的位置 -->
         <div class="image-container">
-            <img src="Photo/a1.png" alt="装饰图片">
+            <img src="photo/a1.png" alt="装饰图片">
         </div>
-        <div class="grid-item" data-num="9">
-            <span class="number">9</span>？
-        </div>
-        <div class="grid-item" data-num="10">
-            <span class="number">10</span>？
-        </div>
+        <div class="grid-item" data-num="9">？</div>
+        <div class="grid-item" data-num="10">？</div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="11">
-            <span class="number">11</span>？
-        </div>
-        <div class="grid-item" data-num="12">
-            <span class="number">12</span>？
-        </div>
+        <div class="grid-item" data-num="11">？</div>
+        <div class="grid-item" data-num="12">？</div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="13">
-            <span class="number">13</span>？
-        </div>
-        <div class="grid-item" data-num="14">
-            <span class="number">14</span>？
-        </div>
-        <div class="grid-item" data-num="15">
-            <span class="number">15</span>？
-        </div>
-        <div class="grid-item" data-num="16">
-            <span class="number">16</span>？
-        </div>
+        <div class="grid-item" data-num="13">？</div>
+        <div class="grid-item" data-num="14">？</div>
+        <div class="grid-item" data-num="15">？</div>
+        <div class="grid-item" data-num="16">？</div>
     </div>
 
     <div class="btn-container">
@@ -299,7 +257,7 @@
     </div>
 
     <script>
-        // ========== ✅ 语言配置 ==========
+        // ========== 语言配置 ==========
         const langConfig = {
             cn: {
                 title: "试试你的运气",
@@ -375,7 +333,7 @@
         // 当前语言
         let currentLang = "cn";
         
-        // ========== ✅ 核心配置项 ==========
+        // ========== 核心配置项 ==========
         const luckyPath = [1,2,3,5,7,9,11,13,16,15,14,12,10,8,6,4,1]; // 滚动轨迹
         const startBtn = document.getElementById('startBtn');
         const mainTitle = document.getElementById('mainTitle');
@@ -388,7 +346,7 @@
         const FLASH_INTERVAL = 180; // 闪烁间隔(ms)
         const SHOW_PRIZE_TIME = 2000; // 洗牌展示奖品时长(ms)
         
-        // ✅ 奖品概率配置（精确控制）
+        // 奖品概率配置（精确控制）
         const PRIZE_PROBABILITY = {
             "获得100粉丝": 80,    // 80%
             "获得1000粉丝": 12,   // 12%
@@ -397,7 +355,7 @@
             "获得100000粉丝": 0   // 0%
         };
         
-        // ✅ 奖品基础配置（仅用于洗牌展示）
+        // 奖品基础配置（仅用于洗牌展示）
         const prizeConfig = [
             "获得100粉丝", "获得100粉丝", "获得100粉丝", "获得100粉丝", "获得100粉丝",
             "获得100粉丝", "获得100粉丝",
@@ -471,12 +429,10 @@
                 startBtn.textContent = langConfig[lang].startBtn;
             }
             
-            // 更新所有格子的问号（保留序号）
+            // 更新所有格子的问号
             document.querySelectorAll('.grid-item').forEach(item => {
-                const numberEl = item.querySelector('.number');
-                const numberText = numberEl ? numberEl.textContent : '';
                 if (item.innerHTML.includes('？') || item.innerHTML.includes('?') || item.innerHTML.includes('؟')) {
-                    item.innerHTML = `<span class="number">${numberText}</span>${langConfig[lang].unknown}`;
+                    item.innerHTML = langConfig[lang].unknown;
                 }
             });
             
@@ -563,8 +519,8 @@
             }
         }
         
-        // 生成奖品HTML（保留序号）
-        function generatePrizeHtml(prize, num) {
+        // 生成奖品HTML（移除序号）
+        function generatePrizeHtml(prize) {
             let prizeTop = langConfig[currentLang].prizeTop;
             let prizeBottom = '';
             
@@ -596,7 +552,6 @@
             }
             
             return `
-                <span class="number">${num}</span>
                 <div class="prize-text">
                     <span class="prize-top">${prizeTop}</span>
                     <span class="prize-bottom">${prizeBottom}</span>
@@ -604,7 +559,7 @@
             `;
         }
 
-        // ========== ✅ 洗牌功能核心逻辑 ==========
+        // ========== 洗牌功能核心逻辑 ==========
         async function shufflePrizes() {
             if (isRunning) return;
             isRunning = true;
@@ -616,7 +571,7 @@
                 item.style.animation = 'none';
             });
 
-            // 2. 逐个翻开格子展示奖品（模拟翻牌动画，保留序号）
+            // 2. 逐个翻开格子展示奖品（模拟翻牌动画）
             const gridItems = document.querySelectorAll('.grid-item');
             for (let i = 0; i < gridItems.length; i++) {
                 const item = gridItems[i];
@@ -630,8 +585,8 @@
                 
                 // 添加洗牌展示样式和颜色类
                 item.classList.add('shuffle-show', colorClass);
-                // 生成奖品文字（保留序号）
-                item.innerHTML = generatePrizeHtml(prize, num);
+                // 生成奖品文字（移除序号）
+                item.innerHTML = generatePrizeHtml(prize);
                 
                 // 每个格子翻牌间隔
                 await new Promise(resolve => setTimeout(resolve, 100));
@@ -640,12 +595,11 @@
             // 3. 展示指定时长后翻回问号面
             await new Promise(resolve => setTimeout(resolve, SHOW_PRIZE_TIME));
             
-            // 4. 逐个翻回红色底问号面（保留序号）
+            // 4. 逐个翻回红色底问号面
             for (let i = gridItems.length - 1; i >= 0; i--) {
                 const item = gridItems[i];
-                const num = item.dataset.num;
                 item.classList.remove('shuffle-show', 'color-black', 'color-yellow', 'color-orange', 'color-blue', 'color-red');
-                item.innerHTML = `<span class="number">${num}</span>${langConfig[currentLang].unknown}`;
+                item.innerHTML = langConfig[currentLang].unknown;
                 await new Promise(resolve => setTimeout(resolve, 80));
             }
 
@@ -659,7 +613,7 @@
             startBtn.disabled = false;
         }
 
-        // ========== ✅ 核心抽奖逻辑（精确概率控制） ==========
+        // ========== 核心抽奖逻辑（精确概率控制） ==========
         startBtn.addEventListener('click', async () => {
             // 如果是洗牌模式，执行洗牌
             if (isShuffleMode) {
@@ -672,12 +626,11 @@
             isRunning = true;
             startBtn.disabled = true;
 
-            // 重置所有格子样式（保留序号）
+            // 重置所有格子样式
             document.querySelectorAll('.grid-item').forEach(item => {
-                const num = item.dataset.num;
                 item.classList.remove('active', 'win', 'flipped', 'shuffle-show', 'color-black', 'color-yellow', 'color-orange', 'color-blue', 'color-red');
                 item.style.animation = 'none';
-                item.innerHTML = `<span class="number">${num}</span>${langConfig[currentLang].unknown}`;
+                item.innerHTML = langConfig[currentLang].unknown;
             });
 
             // 随机滚动时长（1000-1300ms）
@@ -708,21 +661,18 @@
                     document.querySelectorAll('.grid-item').forEach(item => item.classList.remove('active'));
                     currItem.classList.add('win');
                     
-                    // ========== ✅ 关键修改：使用概率函数获取中奖奖品 ==========
+                    // 关键修改：使用概率函数获取中奖奖品
                     const winPrize = getPrizeByProbability();
                     
-                    // 闪烁动画后翻转显示奖品（保留序号）
+                    // 闪烁动画后翻转显示奖品
                     flashElement(currItem, FLASH_TIMES, FLASH_INTERVAL).then(() => {
                         currItem.classList.remove('win');
                         currItem.classList.add('flipped');
                         // 获取奖品颜色类
                         const colorClass = getPrizeColorClass(winPrize);
                         currItem.classList.add(colorClass);
-                        // 生成奖品文字（保留序号）
-                        currItem.innerHTML = generatePrizeHtml(winPrize, currNum);
-                        
-                        // ========== ✅ 已删除：中奖结果弹窗提示 ==========
-                        // alert(`🎉 恭喜你！${winPrize} 🎉`);
+                        // 生成奖品文字（移除序号）
+                        currItem.innerHTML = generatePrizeHtml(winPrize);
                         
                         // 切换为洗牌模式
                         isShuffleMode = true;
@@ -774,4 +724,3 @@
     </script>
 </body>
 </html>
-
