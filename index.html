@@ -81,8 +81,32 @@
             box-sizing: border-box;
             text-align: center;
         }
+        /* 新增序号样式 */
+        .grid-item .number {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            font-size: 10px;
+            color: rgba(255, 217, 0, 0.8);
+            font-weight: normal;
+        }
         .empty {
             background-color: transparent;
+        }
+        /* 新增图片容器样式 */
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保持图片比例并覆盖容器 */
         }
         .start-btn {
             background-color: #FFC100;
@@ -212,27 +236,62 @@
     </div>
 
     <div class="grid-container">
-        <div class="grid-item" data-num="1">？</div>
-        <div class="grid-item" data-num="2">？</div>
-        <div class="grid-item" data-num="3">？</div>
-        <div class="grid-item" data-num="4">？</div>
+        <div class="grid-item" data-num="1">
+            <span class="number">1</span>？
+        </div>
+        <div class="grid-item" data-num="2">
+            <span class="number">2</span>？
+        </div>
+        <div class="grid-item" data-num="3">
+            <span class="number">3</span>？
+        </div>
+        <div class="grid-item" data-num="4">
+            <span class="number">4</span>？
+        </div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="5">？</div>
-        <div class="grid-item" data-num="6">？</div>
+        <div class="grid-item" data-num="5">
+            <span class="number">5</span>？
+        </div>
+        <div class="grid-item" data-num="6">
+            <span class="number">6</span>？
+        </div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="7">？</div>
-        <div class="grid-item" data-num="8">？</div>
+        <div class="grid-item" data-num="7">
+            <span class="number">7</span>？
+        </div>
+        <div class="grid-item" data-num="8">
+            <span class="number">8</span>？
+        </div>
+        <!-- 插入图片的位置 -->
+        <div class="image-container">
+            <img src="photo/a1.jpg" alt="装饰图片">
+        </div>
+        <div class="grid-item" data-num="9">
+            <span class="number">9</span>？
+        </div>
+        <div class="grid-item" data-num="10">
+            <span class="number">10</span>？
+        </div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="9">？</div>
-        <div class="grid-item" data-num="10">？</div>
+        <div class="grid-item" data-num="11">
+            <span class="number">11</span>？
+        </div>
+        <div class="grid-item" data-num="12">
+            <span class="number">12</span>？
+        </div>
         <div class="empty"></div>
-        <div class="grid-item" data-num="11">？</div>
-        <div class="grid-item" data-num="12">？</div>
-        <div class="empty"></div>
-        <div class="grid-item" data-num="13">？</div>
-        <div class="grid-item" data-num="14">？</div>
-        <div class="grid-item" data-num="15">？</div>
-        <div class="grid-item" data-num="16">？</div>
+        <div class="grid-item" data-num="13">
+            <span class="number">13</span>？
+        </div>
+        <div class="grid-item" data-num="14">
+            <span class="number">14</span>？
+        </div>
+        <div class="grid-item" data-num="15">
+            <span class="number">15</span>？
+        </div>
+        <div class="grid-item" data-num="16">
+            <span class="number">16</span>？
+        </div>
     </div>
 
     <div class="btn-container">
@@ -412,10 +471,12 @@
                 startBtn.textContent = langConfig[lang].startBtn;
             }
             
-            // 更新所有格子的问号
+            // 更新所有格子的问号（保留序号）
             document.querySelectorAll('.grid-item').forEach(item => {
+                const numberEl = item.querySelector('.number');
+                const numberText = numberEl ? numberEl.textContent : '';
                 if (item.innerHTML.includes('？') || item.innerHTML.includes('?') || item.innerHTML.includes('؟')) {
-                    item.innerHTML = langConfig[lang].unknown;
+                    item.innerHTML = `<span class="number">${numberText}</span>${langConfig[lang].unknown}`;
                 }
             });
             
@@ -502,8 +563,8 @@
             }
         }
         
-        // 生成奖品HTML
-        function generatePrizeHtml(prize) {
+        // 生成奖品HTML（保留序号）
+        function generatePrizeHtml(prize, num) {
             let prizeTop = langConfig[currentLang].prizeTop;
             let prizeBottom = '';
             
@@ -535,6 +596,7 @@
             }
             
             return `
+                <span class="number">${num}</span>
                 <div class="prize-text">
                     <span class="prize-top">${prizeTop}</span>
                     <span class="prize-bottom">${prizeBottom}</span>
@@ -554,7 +616,7 @@
                 item.style.animation = 'none';
             });
 
-            // 2. 逐个翻开格子展示奖品（模拟翻牌动画）
+            // 2. 逐个翻开格子展示奖品（模拟翻牌动画，保留序号）
             const gridItems = document.querySelectorAll('.grid-item');
             for (let i = 0; i < gridItems.length; i++) {
                 const item = gridItems[i];
@@ -568,8 +630,8 @@
                 
                 // 添加洗牌展示样式和颜色类
                 item.classList.add('shuffle-show', colorClass);
-                // 生成奖品文字
-                item.innerHTML = generatePrizeHtml(prize);
+                // 生成奖品文字（保留序号）
+                item.innerHTML = generatePrizeHtml(prize, num);
                 
                 // 每个格子翻牌间隔
                 await new Promise(resolve => setTimeout(resolve, 100));
@@ -578,11 +640,12 @@
             // 3. 展示指定时长后翻回问号面
             await new Promise(resolve => setTimeout(resolve, SHOW_PRIZE_TIME));
             
-            // 4. 逐个翻回红色底问号面
+            // 4. 逐个翻回红色底问号面（保留序号）
             for (let i = gridItems.length - 1; i >= 0; i--) {
                 const item = gridItems[i];
+                const num = item.dataset.num;
                 item.classList.remove('shuffle-show', 'color-black', 'color-yellow', 'color-orange', 'color-blue', 'color-red');
-                item.innerHTML = langConfig[currentLang].unknown;
+                item.innerHTML = `<span class="number">${num}</span>${langConfig[currentLang].unknown}`;
                 await new Promise(resolve => setTimeout(resolve, 80));
             }
 
@@ -609,11 +672,12 @@
             isRunning = true;
             startBtn.disabled = true;
 
-            // 重置所有格子样式
+            // 重置所有格子样式（保留序号）
             document.querySelectorAll('.grid-item').forEach(item => {
+                const num = item.dataset.num;
                 item.classList.remove('active', 'win', 'flipped', 'shuffle-show', 'color-black', 'color-yellow', 'color-orange', 'color-blue', 'color-red');
                 item.style.animation = 'none';
-                item.innerHTML = langConfig[currentLang].unknown;
+                item.innerHTML = `<span class="number">${num}</span>${langConfig[currentLang].unknown}`;
             });
 
             // 随机滚动时长（1000-1300ms）
@@ -647,15 +711,15 @@
                     // ========== ✅ 关键修改：使用概率函数获取中奖奖品 ==========
                     const winPrize = getPrizeByProbability();
                     
-                    // 闪烁动画后翻转显示奖品
+                    // 闪烁动画后翻转显示奖品（保留序号）
                     flashElement(currItem, FLASH_TIMES, FLASH_INTERVAL).then(() => {
                         currItem.classList.remove('win');
                         currItem.classList.add('flipped');
                         // 获取奖品颜色类
                         const colorClass = getPrizeColorClass(winPrize);
                         currItem.classList.add(colorClass);
-                        // 生成奖品文字
-                        currItem.innerHTML = generatePrizeHtml(winPrize);
+                        // 生成奖品文字（保留序号）
+                        currItem.innerHTML = generatePrizeHtml(winPrize, currNum);
                         
                         // ========== ✅ 已删除：中奖结果弹窗提示 ==========
                         // alert(`🎉 恭喜你！${winPrize} 🎉`);
